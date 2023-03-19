@@ -86,7 +86,7 @@ namespace JwtWebAPI.Controllers
                 return jwt;
             }
 
-        }
+        
 
 
         private bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
@@ -100,5 +100,5 @@ namespace JwtWebAPI.Controllers
 
 
     }
-
+}
 
