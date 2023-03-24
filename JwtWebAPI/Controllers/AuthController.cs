@@ -7,6 +7,8 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
+using Microsoft.AspNetCore.Authorization;
+
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -22,6 +24,15 @@ namespace JwtWebAPI.Controllers
         public AuthController(IConfiguration configuration)
         {
             _configuration = configuration;
+        }
+
+        [HttpGet, Authorize]
+        public ActionResult<object> GetMe()
+        {
+            var userName = User?.Identity?.Name;
+            var userName2 = User.FindFirstValue(ClaimTypes.Name);
+            var role = User.FindFirstValue(ClaimTypes.Role);
+            return Ok(new{userName, userName2, role});
         }
 
         [HttpPost("register")]
