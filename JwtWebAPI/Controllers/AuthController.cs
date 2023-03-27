@@ -75,8 +75,8 @@ namespace JwtWebAPI.Controllers
             }
             string token = CreateToken(user);
 
-            // var refreshToken = GenerateRefreshToken();
-            // SetRefreshToken(refreshToken);
+             var refreshToken = GenerateRefreshToken();
+             SetRefreshToken(refreshToken);
 
             return Ok(token);
         }
